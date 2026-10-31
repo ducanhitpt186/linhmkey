@@ -87,7 +87,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-head); font-weight: 700; font-size: 1.5rem; line-height: 1.25;
 }
 .section-heading h2::after { content: ""; display: block; width: 40px; height: 3px; margin-top: 9px; border-radius: 3px; background: var(--caramel); }
-.booking-note { margin: 10px 0 0; color: var(--muted); font-size: .8rem; }
+.booking-note { margin: 10px 0 0; color: var(--muted); font-size: 1rem; }
 
 /* ---------- Liên hệ: hàng + chip (kiểu trang Phan Thiết Phố) ---------- */
 .links { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; width: 100%; min-width: 0; }
@@ -106,7 +106,7 @@ img { max-width: 100%; display: block; }
 }
 .t { flex: 1 1 0; min-width: 0; overflow: hidden; }
 .t b { display: block; font-size: .95rem; font-weight: 600; line-height: 1.35; color: var(--roast); overflow-wrap: anywhere; }
-.t small { display: block; max-width: 100%; overflow: hidden; color: var(--muted); font-size: .8rem; white-space: nowrap; text-overflow: ellipsis; }
+.t small { display: block; max-width: 100%; overflow: hidden; color: var(--muted); font-size: 1rem; white-space: nowrap; text-overflow: ellipsis; }
 .act {
   flex: 0 1 auto; max-width: 42%; display: inline-flex; align-items: center; justify-content: center; gap: 5px;
   padding: 6px 9px; border-radius: 999px; font-size: .78rem; font-weight: 400; white-space: nowrap;
@@ -167,7 +167,7 @@ img { max-width: 100%; display: block; }
 .stay-info { display: flex; align-items: center; gap: 13px; margin-bottom: 14px; }
 .stay-copy { display: grid; min-width: 0; }
 .stay-copy strong { font-family: var(--font-head); font-size: 1.02rem; line-height: 1.35; color: var(--roast); }
-.stay-copy small { margin-top: 2px; color: var(--muted); font-size: .78rem; }
+.stay-copy small { margin-top: 2px; color: var(--muted); font-size: 1rem; }
 
 .stay-actions { display: grid; gap: 10px; }
 .stay-actions.two { grid-template-columns: 1fr 1fr; }
@@ -327,7 +327,58 @@ body::before {
 /* ---------- Footer nổi bật (v9) ---------- */
 .footer small {
   display: inline-block; padding: 7px 18px; border-radius: 999px;
-  background: var(--roast); color: #f5c451;
-  font-size: .8rem; font-weight: 700; letter-spacing: .03em;
+   color: #fd2121;
+  font-size: .8rem; letter-spacing: .03em;
 }
 .place-card .thumb img { object-position: center; }
+
+/* ---------- Bản đồ địa điểm (v10) ---------- */
+.map-card { padding: 14px; background: rgba(245, 237, 227, .72); border-radius: var(--radius); }
+.map-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-bottom: 12px; }
+.map-tab {
+  display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 0;
+  padding: 10px 6px; border: 1.5px solid var(--latte); border-radius: 999px;
+  background: #fff; color: var(--roast); font: inherit; font-size: .8rem; font-weight: 700; line-height: 1.2;
+  cursor: pointer; transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.map-tab .ico { font-size: 1.1rem; }
+.map-tab span { min-width: 0; text-align: center; }
+.map-tab:hover { background: var(--sand); }
+.map-tab.active { background: var(--roast); border-color: var(--roast); color: #fff; }
+.map-frame { aspect-ratio: 4 / 3; overflow: hidden; border-radius: 14px; background: var(--sand); border: 1.5px solid var(--latte); }
+.map-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+.map-info { display: flex; align-items: center; gap: 12px; margin: 14px 2px 12px; }
+.map-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.map-actions .pill { padding: 13px 8px; font-size: .9rem; }
+@media (max-width: 560px) {
+  .map-frame { aspect-ratio: 1 / 1; }
+  .map-tab { flex-direction: column; gap: 3px; font-size: .74rem; padding: 9px 4px; border-radius: 16px; }
+}
+@media (max-width: 340px) {
+  .map-actions { grid-template-columns: 1fr; }
+}
+
+/* ---------- Đặt phòng: dàn hàng ngang gọn gàng (v11) ---------- */
+.booking-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: stretch; }
+.stay-card { display: flex; flex-direction: column; min-width: 0; }
+.stay-card .thumb { aspect-ratio: 4 / 3; }
+.stay-body { display: flex; flex-direction: column; flex: 1; gap: 12px; padding: 12px; }
+.stay-info { flex-direction: column; align-items: flex-start; gap: 8px; }
+.stay-copy strong { font-size: .92rem; }
+.stay-actions, .stay-actions.two { grid-template-columns: minmax(0, 1fr); margin-top: auto; }
+.stay-actions .pill, .stay-actions.two .pill { padding: 11px 8px; font-size: .85rem; gap: 6px; }
+.stay-actions .pill span, .stay-actions.two .pill span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 340px) {
+  .booking-list { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- Các địa điểm: bỏ ảnh, bố cục gọn (v12) ---------- */
+.place-card { padding: 16px; gap: 14px; justify-content: space-between; }
+.place-body { padding: 0; gap: 12px; }
+.place-content h3 { font-size: 1rem; }
+.place-card .pill {
+  margin: 0; justify-content: space-between; padding: 9px 14px; gap: 8px;
+  font-size: .78rem; font-weight: 600;
+}
+.place-card .pill img { flex-basis: 18px; width: 18px; height: 18px; }
+.place-card .pill .cv { width: 14px; height: 14px; flex-basis: 14px; }

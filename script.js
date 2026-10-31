@@ -113,4 +113,36 @@
     notify("Đang tải danh bạ (.vcf)");
   });
 
+  // ---------- Bản đồ các địa điểm ----------
+  var places = [
+    { name: "Tiệm Cà Phê Đường Chân Trời", sub: "Cà phê · Phan Thiết", chip: "coffee", icon: "i-cup",
+      lat: 10.9195558, lng: 108.1095249, link: "https://maps.app.goo.gl/zKN1n9P2eEZxecHb9" },
+    { name: "Thoai Mai House", sub: "Homestay · Phan Thiết", chip: "stay", icon: "i-home",
+      lat: 10.9218568, lng: 108.1107783, link: "https://maps.app.goo.gl/8qpAkwWy48XY8FFG8" },
+    { name: "Thoai Mai House – Căn view biển", sub: "Hẻm 40 Lê Lợi · Hướng biển", chip: "sea", icon: "i-wave",
+      lat: 10.9191394, lng: 108.1092872, link: "https://maps.app.goo.gl/hQvQ3Gurq7GXXRLp6" }
+  ];
+  var mapTabs = doc.querySelectorAll(".map-tab");
+  var mapFrame = doc.getElementById("map-frame");
+  function showPlace(i) {
+    var p = places[i];
+    mapTabs.forEach(function (tab, idx) {
+      var on = idx === i;
+      tab.classList.toggle("active", on);
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    mapFrame.title = "Bản đồ " + p.name;
+    mapFrame.src = "https://www.google.com/maps?q=" + p.lat + "," + p.lng + "&z=17&hl=vi&output=embed";
+    doc.getElementById("map-name").textContent = p.name;
+    doc.getElementById("map-sub").textContent = p.sub;
+    var chip = doc.getElementById("map-chip");
+    chip.className = "chip " + p.chip;
+    chip.querySelector("use").setAttribute("href", "#" + p.icon);
+    doc.getElementById("map-open").href = p.link;
+    doc.getElementById("map-route").href = "https://www.google.com/maps/dir/?api=1&destination=" + p.lat + "," + p.lng;
+  }
+  mapTabs.forEach(function (tab, idx) {
+    tab.addEventListener("click", function () { showPlace(idx); });
+  });
+
 })();
